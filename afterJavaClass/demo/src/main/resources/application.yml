@@ -1,0 +1,7 @@
+property:
+  test:
+    name: path
+
+propertyTest: test
+
+propertyTestList: a, b, c

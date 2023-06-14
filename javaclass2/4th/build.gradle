@@ -1,0 +1,25 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.choi.bssm'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	testImplementation 'junit:junit:4.13.1'//SSR 방식 사용가능하게 해줌 -> html 반환 하게 해줌
+	compileOnly 'org.springframework.boot:spring-boot-devtools' //새로고침시 적용
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
