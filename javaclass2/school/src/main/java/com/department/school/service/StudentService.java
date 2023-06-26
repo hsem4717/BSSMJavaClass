@@ -1,6 +1,7 @@
 package com.department.school.service;
 
 import com.department.school.contorller.dto.SaveStudentRequestDto;
+import com.department.school.contorller.dto.UpdateStudentRequestDto;
 import com.department.school.domain.Department;
 import com.department.school.domain.Student;
 import com.department.school.repository.DepartmentJpaRepository;
@@ -56,5 +57,21 @@ public class StudentService {
         Department department = departmentJpaRepository.findById(departmentId)
                         .orElseThrow(()->new IllegalArgumentException("해당 학과 없음"));
         return studentJpaRepository.findByDepartment(department);
+    }
+
+    public Long update(Long id, UpdateStudentRequestDto requestDto) {
+        //해당 학생 조회
+        Student student = studentJpaRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 학생이 존재하지 않습니다"));
+
+        //해당 학과 조회
+        Department department = departmentJpaRepository.findByDepartment(requestDto.getDepartment())
+                .orElseThrow(()-> new IllegalArgumentException("해당 학과가 존재하지 않습니다"));
+
+        //학과 변경 가능한지 정원 체크
+        changeableDept(department);
+
+        student.updateData(requestDto.getName(), requestDto.getGender(), requestDto.get);
+        return id;
     }
 }

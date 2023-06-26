@@ -29,4 +29,9 @@ public class Department{
         this.name = name;
         this.personnel = personnel;
     }
+
+    public void updateData(String name, Long personnel) {
+        this.name = name;
+        this.personnel = personnel;
+    }
 }
